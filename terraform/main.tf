@@ -56,61 +56,50 @@ resource "azurerm_service_plan" "asp" {
   sku_name            = "P1v3" # Adjusted as needed
 }
 
-# Create the Azure OpenAI services across regions
-resource "azurerm_cognitive_account" "openai" {
+data "azurerm_cognitive_account" "openai" {
   for_each = var.regions
 
-  name                = "gnma-ai-${each.key}"
-  location            = each.value.name
+  name                = "air-hr-${each.key}"
   resource_group_name = data.azurerm_resource_group.rg.name
-  kind                = "OpenAI"
-  sku_name            = "S0"
-  tags = {
-    environment = "production"
-    region      = each.value.location
-    primary     = each.value.primary
-  }
 }
 
-# Deploy the text-embedding-large model in each region
-resource "azurerm_cognitive_deployment" "embedding" {
-  for_each = local.embedding_regions
+# resource "azurerm_cognitive_deployment" "embedding" {
+#   for_each = local.embedding_regions
 
-  name                 = "gnma-embedding-3-large"
-  cognitive_account_id = azurerm_cognitive_account.openai[each.key].id
+#   name                 = "gnma-embedding-3-large"
+#   cognitive_account_id = azurerm_cognitive_account.openai[each.key].id
 
 
-  model {
-    format  = "OpenAI"
-    name    = "text-embedding-3-large"
-    version = "1"
-  }
+#   model {
+#     format  = "OpenAI"
+#     name    = "text-embedding-3-large"
+#     version = "1"
+#   }
 
-  sku {
-    name     = "Standard"
-    capacity = 350
-  }
+#   sku {
+#     name     = "Standard"
+#     capacity = 350
+#   }
 
-}
+# }
 
-# Deploy the o4-mini model in each region
-resource "azurerm_cognitive_deployment" "gpt4o" {
-  for_each = azurerm_cognitive_account.openai
+# # Deploy the o4-mini model in each region
+# resource "azurerm_cognitive_deployment" "gpt4o" {
+#   for_each = azurerm_cognitive_account.openai
 
-  name                 = "o4-mini"
-  cognitive_account_id = each.value.id
+#   name                 = "o4-mini"
+#   cognitive_account_id = each.value.id
 
-  model {
-    format  = "OpenAI"
-    name    = "o4-mini"
-    version = "2025-04-16"
-  }
+#   model {
+#     format  = "OpenAI"
+#     name    = "o4-mini"
+#     version = "2025-04-16"
+#   }
 
-  sku {
-    name     = "GlobalStandard"
-    capacity = 900
-  }
-}
+#   sku {
+#     name     = "GlobalStandard"
+#   }
+# }
 
 # App Services - one per region
 resource "azurerm_linux_web_app" "app" {
@@ -145,33 +134,33 @@ resource "azurerm_linux_web_app" "app" {
     "AZURE_COSMOSDB_MONGO_VCORE_TITLE_COLUMN"      = ""
     "AZURE_COSMOSDB_MONGO_VCORE_URL_COLUMN"        = ""
     "AZURE_COSMOSDB_MONGO_VCORE_VECTOR_COLUMNS"    = ""
-    "AZURE_OPENAI_EMBEDDING_ENDPOINT"              = azurerm_cognitive_account.openai[var.regions[each.value.openai_region].nearest_embedding_region].endpoint
-    "AZURE_OPENAI_EMBEDDING_KEY"                   = azurerm_cognitive_account.openai[var.regions[each.value.openai_region].nearest_embedding_region].primary_access_key
+    "AZURE_OPENAI_EMBEDDING_ENDPOINT"              = data.azurerm_cognitive_account.openai[var.regions[each.value.openai_region].nearest_embedding_region].endpoint
+    "AZURE_OPENAI_EMBEDDING_KEY"                   = data.azurerm_cognitive_account.openai[var.regions[each.value.openai_region].nearest_embedding_region].primary_access_key
     # "AZURE_OPENAI_EMBEDDING_DEPLOYMENT"               = var.regions[each.value.openai_region].supports_embedding ? azurerm_cognitive_deployment.embedding[each.value.openai_region].name : azurerm_cognitive_deployment.embedding[var.regions[each.value.openai_region].nearest_embedding_region].name
-    "AZURE_OPENAI_EMBEDDING_NAME"                     = "gnma-embedding-3-large"
-    "AZURE_OPENAI_ENDPOINT"                           = azurerm_cognitive_account.openai[each.value.openai_region].endpoint
-    "AZURE_OPENAI_KEY"                                = azurerm_cognitive_account.openai[each.value.openai_region].primary_access_key
-    "AZURE_OPENAI_MAX_TOKENS"                         = "8096"
-    "AZURE_OPENAI_MODEL"                              = "o4-mini"
-    "AZURE_OPENAI_MODEL_NAME"                         = "o4-mini"
-    "AZURE_OPENAI_RESOURCE"                           = azurerm_cognitive_account.openai[each.value.openai_region].name
+    "AZURE_OPENAI_EMBEDDING_NAME"                     = "text-embedding-3-large"
+    "AZURE_OPENAI_ENDPOINT"                           = data.azurerm_cognitive_account.openai[each.value.openai_region].endpoint
+    "AZURE_OPENAI_KEY"                                = data.azurerm_cognitive_account.openai[each.value.openai_region].primary_access_key
+    "AZURE_OPENAI_MAX_TOKENS"                         = "32256"
+    "AZURE_OPENAI_MODEL"                              = "gpt-4o"
+    "AZURE_OPENAI_MODEL_NAME"                         = "gpt-4o"
+    "AZURE_OPENAI_RESOURCE"                           = data.azurerm_cognitive_account.openai[each.value.openai_region].name
     "AZURE_OPENAI_STOP_SEQUENCE"                      = ""
     "AZURE_OPENAI_SYSTEM_MESSAGE"                     = local.system_message
     "AZURE_OPENAI_TEMPERATURE"                        = "0.7"
     "AZURE_OPENAI_TOP_P"                              = "0.95"
     "AZURE_SEARCH_CONTENT_COLUMNS"                    = "content"
     "AZURE_SEARCH_ENABLE_IN_DOMAIN"                   = "false"
-    "AZURE_SEARCH_FILENAME_COLUMN"                    = "hierarchyPath"
-    "AZURE_SEARCH_INDEX"                              = "cfr-regulations"
-    "AZURE_SEARCH_KEY"                                = azurerm_search_service.search.primary_key
+    "AZURE_SEARCH_FILENAME_COLUMN"                    = "source_document"
+    "AZURE_SEARCH_INDEX"                              = "gnma-ai"
+    "AZURE_SEARCH_KEY"                                = data.azurerm_search_service.search.primary_key
     "AZURE_SEARCH_PERMITTED_GROUPS_COLUMN"            = ""
     "AZURE_SEARCH_QUERY_TYPE"                         = "vector_semantic_hybrid"
     "AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG"             = "cfr-semantic-config"
-    "AZURE_SEARCH_SERVICE"                            = azurerm_search_service.search.name
+    "AZURE_SEARCH_SERVICE"                            = data.azurerm_search_service.search.name
     "AZURE_SEARCH_STRICTNESS"                         = "3"
-    "AZURE_SEARCH_TITLE_COLUMN"                       = "partHeading"
+    "AZURE_SEARCH_TITLE_COLUMN"                       = "section_title"
     "AZURE_SEARCH_TOP_K"                              = "50"
-    "AZURE_SEARCH_URL_COLUMN"                         = "partHeading"
+    "AZURE_SEARCH_URL_COLUMN"                         = "souce_document"
     "AZURE_SEARCH_USE_SEMANTIC_SEARCH"                = "true"
     "AZURE_SEARCH_VECTOR_COLUMNS"                     = "vector"
     "ApplicationInsightsAgent_EXTENSION_VERSION"      = "~3"
@@ -345,26 +334,31 @@ resource "azurerm_application_insights" "central" {
   # Optional: workspace_id if using Log Analytics
 }
 
-resource "azurerm_search_service" "search" {
-  name                = "gnma-ai"
+# resource "azurerm_search_service" "search" {
+#   name                = "gnma-ai"
+#   resource_group_name = data.azurerm_resource_group.rg.name
+#   location            = data.azurerm_resource_group.rg.location
+#   sku                 = "standard"
+#   replica_count       = 1
+#   partition_count     = 1
+#   hosting_mode        = "default"
+
+#   public_network_access_enabled = true
+#   local_authentication_enabled  = true
+
+#   semantic_search_sku = "standard"
+
+#   # Note: These fields will be managed by Terraform after import
+#   lifecycle {
+#     ignore_changes = [
+#       tags["ProjectType"]
+#     ]
+#   }
+# }
+
+data "azurerm_search_service" "search" {
+  name                = "yrci"
   resource_group_name = data.azurerm_resource_group.rg.name
-  location            = data.azurerm_resource_group.rg.location
-  sku                 = "standard"
-  replica_count       = 1
-  partition_count     = 1
-  hosting_mode        = "default"
-
-  public_network_access_enabled = true
-  local_authentication_enabled  = true
-
-  semantic_search_sku = "standard"
-
-  # Note: These fields will be managed by Terraform after import
-  lifecycle {
-    ignore_changes = [
-      tags["ProjectType"]
-    ]
-  }
 }
 
 locals {
