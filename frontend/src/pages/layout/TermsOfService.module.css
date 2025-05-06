@@ -1,0 +1,100 @@
+/* TermsOfService.module.css */
+
+.termsContent {
+    padding: 10px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  .termsHeader {
+    margin-bottom: 20px;
+  }
+  
+  .termsHeader h2 {
+    color: ##0a1b36;
+    margin-bottom: 5px;
+  }
+  
+  .termsWarning {
+    background-color: #f3f2f1;
+    border-left: 4px solid ##0a1b36;
+    padding: 12px 15px;
+    margin: 15px 0;
+    font-weight: 600;
+  }
+  
+  .termsContent h3 {
+    color: ##0a1b36;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .termsContent h4 {
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .termsContent p {
+    margin-bottom: 15px;
+  }
+  
+  .termsContent ul {
+    padding-left: 25px;
+    margin-bottom: 15px;
+  }
+  
+  .termsContent li {
+    margin-bottom: 5px;
+  }
+  
+  /* Special styling for legal disclaimers in all caps */
+  .termsContent p:has(em) {
+    font-style: italic;
+  }
+  
+  /* Handle links in the terms */
+  .termsContent a {
+    color: #0078d4;
+    text-decoration: none;
+  }
+  
+  .termsContent a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Style for code section */
+  .termsContent code {
+    background-color: #f3f2f1;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  /* Add this to your TermsOfService.module.css */
+.scrollableContent {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 0 24px;
+    margin: 0 -24px;  /* To counteract any padding in the Dialog */
+  }
+  
+  .scrollableContent::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollableContent::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .scrollableContent::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+  
+  .scrollableContent::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
