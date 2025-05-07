@@ -45,6 +45,14 @@ const enum messageStatus {
   Done = 'Done'
 }
 
+interface CodeProps {
+  node?: any
+  inline?: boolean
+  className?: string
+  children?: React.ReactNode
+  [key: string]: any
+}
+
 const Chat = () => {
   const appStateContext = useContext(AppStateContext)
   const ui = appStateContext?.state.frontendSettings?.ui
@@ -595,7 +603,7 @@ const Chat = () => {
         // Returning the prettified error message
         if (reason !== '') {
           return (
-            'The prompt was filtered due to triggering Azure OpenAI’s content filtering system.\n' +
+            "The prompt was filtered due to triggering Azure OpenAI's content filtering system.\n" +
             'Reason: This prompt contains content flagged as ' +
             reason +
             '\n\n' +
@@ -1008,18 +1016,23 @@ const Chat = () => {
                 title={
                   activeCitation.url && !activeCitation.url.includes('blob.core')
                     ? activeCitation.url
-                    : activeCitation.title ?? ''
+                    : (activeCitation.title ?? '')
                 }
                 onClick={() => onViewSource(activeCitation)}>
                 {activeCitation.title}
               </h5>
               <div tabIndex={0}>
                 <ReactMarkdown
-                  linkTarget="_blank"
-                  className={styles.citationPanelContent}
-                  children={DOMPurify.sanitize(activeCitation.content, { ALLOWED_TAGS: XSSAllowTags })}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}
+                  children={DOMPurify.sanitize(activeCitation.content, { ALLOWED_TAGS: XSSAllowTags })}
+                  components={{
+                    a: ({ href, children }) => (
+                      <a href={href} target="_blank" rel="noopener noreferrer">
+                        {children}
+                      </a>
+                    )
+                  }}
                 />
               </div>
             </Stack.Item>

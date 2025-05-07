@@ -30,7 +30,7 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ isOpen, onDismiss }) =>
       }}>
       <div className={styles.termsContent}>
         <div className={styles.termsHeader}>
-          <h2>AIR-hr.ai</h2>
+          <h2>Ginnie Mae HECM MBS Chatbot</h2>
           <p>
             <strong>Effective date:</strong> 3/3/2025
           </p>
@@ -44,10 +44,10 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ isOpen, onDismiss }) =>
         </div>
 
         <p>
-          Welcome to the AIR-hr software application (the "Application"), which, along with the associated services,
-          features, and functionalities, is referred to collectively as the "Services". Please read on to learn the
-          rules and restrictions that govern your use of the Services. If you have any questions, comments, or concerns
-          regarding these terms or the Services, please contact us at media@AIR-hr.ai.
+          Welcome to the Ginnie Mae HECM MBS Chatbot software application (the "Application"), which, along with the
+          associated services, features, and functionalities, is referred to collectively as the "Services". Please read
+          on to learn the rules and restrictions that govern your use of the Services. If you have any questions,
+          comments, or concerns regarding these terms or the Services, please contact us at media@gnma-ai.ai.
         </p>
 
         <p>
@@ -55,7 +55,7 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ isOpen, onDismiss }) =>
           "us"). You must agree to and accept all of the Terms, or you don't have the right to use the Services. Your
           use of the Services in any way means that you agree to all of these Terms, and these Terms will remain in
           effect while you use the Services. These Terms include the provisions in this document, as well as those in
-          Disclaimer at AIR-hr.ai.
+          Disclaimer at gnma-ai.ai.
         </p>
 
         <h3>Notice Regarding Dispute Resolution</h3>
@@ -281,15 +281,14 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ isOpen, onDismiss }) =>
 
         <h4>Warranty Disclaimers</h4>
         <p>
-          The Services provide responses based on Title 5 of the Code of Federal Regulations (5 CFR) and are powered by
-          technology developed by Pyramid Systems Inc. The Services have been trained and informed by subject matter
-          professionals from YRCI. The information provided by the Application is dependent on the most recent version
-          of 5 CFR available at the time of inquiry. While efforts are made to ensure the accuracy and currency of
-          responses, You should verify information against official regulatory sources. The Services do not provide
-          legal or authoritative interpretations of federal regulations and should not be relied upon as a substitute
-          for professional human resources or legal advice. By using the Service, You acknowledge that the information
-          is provided on an "as-is" basis and that the developers and trainers of this software assume no liability for
-          any decisions made based on its responses.
+          The Services provide responses based on the Ginnie Mae HECM MBS Base Prospectus (GINNIE MAE 5500.3, REV. 1)
+          and are powered by technology developed by Pyramid Systems Inc. The information provided by the Application is
+          dependent on the Ginnie Mae HECM MBS Base Prospectus available at the time of inquiry. While efforts are made
+          to ensure the accuracy and currency of responses, You should verify information against official regulatory
+          sources. The Services do not provide legal or authoritative interpretations of financial regulations and
+          should not be relied upon as a substitute for professional financial or legal advice. By using the Service,
+          You acknowledge that the information is provided on an "as-is" basis and that the developers and trainers of
+          this software assume no liability for any decisions made based on its responses.
         </p>
         <p>
           By using the Services, You agree that the Content is provided on an "as-is" basis and that the developers and

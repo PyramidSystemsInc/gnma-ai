@@ -39,8 +39,17 @@ const Layout = () => {
   const appStateContext = useContext(AppStateContext)
   const ui = appStateContext?.state.frontendSettings?.ui
 
+  useEffect(() => {
+    const accepted = localStorage.getItem('disclaimerAcceptedGNMA')
+    if (accepted === 'true') {
+      setDisclaimerAccepted(true)
+      setShowLanding(false)
+    }
+  }, [])
+
   const handleLaunchClick = () => {
     if (disclaimerAccepted) {
+      localStorage.setItem('disclaimerAcceptedGNMA', 'true')
       setShowLanding(false)
       setShowAcceptanceError(false)
     } else {
@@ -131,17 +140,16 @@ const Layout = () => {
         <div className={styles.landingPage}>
           <div className={styles.landingContainer}>
             <img
-              src="https://yrci-public-ercecudsgcgbfxdt.z01.azurefd.net/assets/AIR-hr_ver3.png"
-              alt="AIR-hr"
+              src="https://www.ncsha.org/wp-content/uploads/2018/05/Ginnie_Mae_Logo.jpg"
+              alt="Ginnie Mae HECM MBS Chatbot"
               className={styles.landingLogo}
             />
 
             <div className={styles.landingContent}>
               <p className={styles.landingDescription}>
-                Developed by experts in AI and federal Human Resource (HR) regulations, the AIR-hr tool simplifies
-                complex regulations and provides employees with clear, actionable explanations that help them navigate
-                government HR policies effectively. It ensures employees fully understand their options, minimizing
-                confusion and improving decision-making.
+                This AI assistant is specialized in analyzing and answering questions about the Ginnie Mae Guaranteed
+                Home Equity Conversion Mortgage-Backed Securities (HECM MBS). It provides information based solely on
+                the Ginnie Mae HECM MBS Base Prospectus.
               </p>
 
               <div className={styles.disclaimerCheckboxContainer}>
@@ -151,7 +159,7 @@ const Layout = () => {
                       I accept the
                       <a
                         href="#"
-                        onClick={e => {
+                        onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                           e.preventDefault()
                           handleDisclaimerClick()
                         }}>
@@ -184,9 +192,9 @@ const Layout = () => {
               </button>
             </div>
 
-            <div className={styles.divider} />
+            {/* <div className={styles.divider} />
 
-            <h2 className={styles.collaborationTitle}>AIR-hr is a collaboration between</h2>
+            <h2 className={styles.collaborationTitle}>This application is a collaboration between</h2>
 
             <div className={styles.partnerLogos}>
               <a
@@ -210,13 +218,13 @@ const Layout = () => {
                   className={styles.partnerLogo}
                 />
               </a>
-            </div>
+            </div> */}
 
             <div className={styles.divider} />
 
             <div className={styles.contactSection}>
               <div className={styles.contactInfo}>
-                <a href="mailto:media@AIR-hr.ai">Media Contact: media@AIR-hr.ai</a>
+                <a href="mailto:media@gnma-ai.ai">Media Contact: media@gnma-ai.ai</a>
               </div>
               <a
                 href="https://yrciblob.blob.core.windows.net/assets/press-release.pdf"
@@ -284,7 +292,9 @@ const Layout = () => {
                 tabIndex={0}
                 aria-label="Copy"
                 onClick={handleCopyClick}
-                onKeyDown={e => (e.key === 'Enter' || e.key === ' ' ? handleCopyClick() : null)}>
+                onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
+                  e.key === 'Enter' || e.key === ' ' ? handleCopyClick() : null
+                }>
                 <CopyRegular className={styles.copyButton} />
                 <span className={styles.copyButtonText}>{copyText}</span>
               </div>

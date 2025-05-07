@@ -30,13 +30,15 @@
 .questionInputSendButton {
   width: 24px;
   height: 23px;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
   cursor: pointer;
 }
 
 .questionInputSendButton:hover {
   transform: scale(1.15);
-  filter: drop-shadow(0 0 2px #D6AF36); /* Enhanced gold glow */
+  filter: drop-shadow(0 0 2px #d6af36); /* Enhanced gold glow */
   animation: pulse 1.5s infinite;
 }
 @keyframes pulse {
@@ -67,7 +69,7 @@
   left: 0%;
   bottom: 0%;
   /* Enhanced gradient with the navy federal colors */
-  background: linear-gradient(90deg, #041E42 0%, #1A4480 50%, #205493 100%);
+  background: linear-gradient(90deg, #041e42 0%, #1a4480 50%, #205493 100%);
   /* Add gold accent with a subtle divider line */
   border-bottom: 1px solid rgba(214, 175, 54, 0.4); /* #D6AF36 with opacity */
   border-bottom-left-radius: 8px;

@@ -307,21 +307,21 @@
   .landingContainer {
     padding: 20px 20px 80px;
   }
-  
+
   .landingLogo {
     width: 220px;
     margin-bottom: 30px;
   }
-  
+
   .partnerLogo {
     height: 40px;
     max-width: 140px;
   }
-  
+
   .logoSeparator {
     margin: 0 20px;
   }
-  
+
   .disclaimerContent {
     max-height: 300px;
   }

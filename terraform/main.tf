@@ -140,7 +140,7 @@ resource "azurerm_linux_web_app" "app" {
     "AZURE_OPENAI_EMBEDDING_NAME"                     = "text-embedding-3-large"
     "AZURE_OPENAI_ENDPOINT"                           = data.azurerm_cognitive_account.openai[each.value.openai_region].endpoint
     "AZURE_OPENAI_KEY"                                = data.azurerm_cognitive_account.openai[each.value.openai_region].primary_access_key
-    "AZURE_OPENAI_MAX_TOKENS"                         = "32256"
+    "AZURE_OPENAI_MAX_TOKENS"                         = "14136"
     "AZURE_OPENAI_MODEL"                              = "gpt-4o"
     "AZURE_OPENAI_MODEL_NAME"                         = "gpt-4o"
     "AZURE_OPENAI_RESOURCE"                           = data.azurerm_cognitive_account.openai[each.value.openai_region].name

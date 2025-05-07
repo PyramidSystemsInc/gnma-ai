@@ -2,14 +2,14 @@
   width: 86px;
   height: 32px;
   border-radius: 4px;
-  background: radial-gradient(109.81% 107.82% at 100.1% 90.19%, #041E42 33.63%, #1A4480 70.31%, #2E73B4 100%);
+  background: radial-gradient(109.81% 107.82% at 100.1% 90.19%, #041e42 33.63%, #1a4480 70.31%, #2e73b4 100%);
   padding: 5px 12px;
   /* Optional gold border for more federal appearance */
-  border: 1px solid #D6AF36;
+  border: 1px solid #d6af36;
 }
 
 .shareButtonRoot:hover {
-  background: linear-gradient(135deg, #041E42 0%, #112F5F 51.04%, #205493 100%);
+  background: linear-gradient(135deg, #041e42 0%, #112f5f 51.04%, #205493 100%);
 }
 
 .shareButtonRoot span {

@@ -1,36 +1,34 @@
-# AIR-hr
+# Ginnie Mae HECM MBS Chatbot
 
 ## Overview
 
-AIR-hr is an innovative tool designed to simplify complex federal Human Resource (HR) regulations, providing government employees with clear, actionable explanations of HR policies. Developed by experts in artificial intelligence and federal HR regulations, AIR-hr bridges the gap between complex government policies and employees' understanding, enabling more informed decision-making.
+This is an AI assistant specialized in analyzing and answering questions about the Ginnie Mae Guaranteed Home Equity Conversion Mortgage-Backed Securities (HECM MBS). It is developed by Pyramid Systems Inc.
 
-## Features
+The primary function of this chatbot is to provide information based **solely** on the Ginnie Mae HECM MBS Base Prospectus (GINNIE MAE 5500.3, REV. 1) provided in the context. It does not use external knowledge or prior training data.
 
-- **Regulation Simplification**: Transforms complex federal HR regulations into easy-to-understand language
-- **Interactive Policy Navigation**: Guides users through relevant HR policies based on their specific situations
-- **Actionable Explanations**: Provides clear steps and options for employees to follow
-- **Up-to-date Information**: Regularly updated to reflect the latest federal HR regulations
-- **User-friendly Interface**: Designed for accessibility and ease of use for all government employees
+## Core Features
 
-## Why AIR-hr?
+-   **Targeted Information Retrieval**: Analyzes user queries to identify key terms and concepts related to the HECM MBS Prospectus.
+-   **Document-Grounded Answers**: Locates and extracts relevant information strictly from the provided document text.
+-   **Clear and Concise Responses**: Formulates answers using clear language, emphasizing key terms with bold text.
+-   **Source Transparency**: Indicates if answers are direct quotes or summaries and, where possible, references the document section.
+-   **Handles Ambiguity**: If a query is unclear, it will ask for clarification based on the document's content.
+-   **Addresses Missing Information**: Clearly states if the provided document does not contain the requested information.
 
-Government HR policies are notoriously complex, often leaving employees confused about their rights, benefits, and options. AIR-hr addresses this challenge by:
+## How It Works
 
-- Minimizing confusion around HR regulations
-- Improving employee decision-making
-- Reducing the time spent interpreting complex policies
-- Ensuring employees understand all available options
-- Promoting consistent application of HR policies across agencies
+1.  **Analyzes Query**: Identifies key terms in the user's question (e.g., "Maturity Event," "Ginnie Mae Guaranty").
+2.  **Searches Document**: Scans the HECM MBS Prospectus for relevant sections.
+3.  **Formulates Answer**: Provides responses based only on the document, using formatting like bolding, blockquotes for direct quotes, and lists for clarity.
 
-## Contributing
+## Important Disclaimer
 
-We welcome contributions to AIR-hr! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
-
+**Please remember this information is based *only* on the Ginnie Mae HECM MBS Base Prospectus (GINNIE MAE 5500.3, REV. 1). This document may not reflect the most current rules or specific details applicable to a particular security. It is not financial or legal advice. For definitive information or advice, consult official Ginnie Mae resources or a qualified professional. ALWAYS REFER to AGENCY specific guidance for further information and confirmation.**
 
 ## Acknowledgements
 
-AIR-hr was developed through collaboration between AI technology experts and federal HR specialists dedicated to improving the government employee experience.
+This chatbot was developed by Pyramid Systems Inc.
 
 ---
 
-*AIR-hr: Making federal HR regulations accessible for all government employees.*
+*Ginnie Mae HECM MBS Chatbot: Making federal HR regulations accessible for all government employees.*

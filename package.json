@@ -1,7 +1,26 @@
 {
   "dependencies": {
+    "@fluentui/react": "^8.122.16",
     "@fluentui/react-components": "^9.60.0",
     "@fluentui/react-hooks": "^8.8.17",
-    "@fluentui/react-icons": "^2.0.274"
+    "@fluentui/react-icons": "^2.0.274",
+    "dompurify": "^3.2.5",
+    "framer-motion": "^12.10.0",
+    "lodash": "^4.17.21",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "react-uuid": "^2.0.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-supersub": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.16",
+    "@types/mocha": "^10.0.10",
+    "@types/react": "^18.3.21",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/react-syntax-highlighter": "^15.5.13"
   }
 }

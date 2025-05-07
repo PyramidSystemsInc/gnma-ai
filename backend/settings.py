@@ -41,11 +41,11 @@ class _UiSettings(BaseSettings):
         env_ignore_empty=True
     )
 
-    title: str = "AIR-hr.ai"
-    logo: Optional[str] = "https://yrci-public-ercecudsgcgbfxdt.z01.azurefd.net/assets/psi-yrci-logo.png"
-    chat_logo: Optional[str] = "https://yrci-public-ercecudsgcgbfxdt.z01.azurefd.net/assets/AIR-hr_ver3.png"
-    chat_title: str = ""
-    chat_description: str = "Get expert guidance on retirement, buyout, and reduction in force (RIF) options"
+    title: str = "Ginnie Mae HECM MBS Assistant"
+    logo: Optional[str] = "https://www.ncsha.org/wp-content/uploads/2018/05/Ginnie_Mae_Logo.jpg"
+    chat_logo: Optional[str] = "https://www.ncsha.org/wp-content/uploads/2018/05/Ginnie_Mae_Logo.jpg"
+    chat_title: str = "Ginnie Mae HECM MBS Chatbot"
+    chat_description: str = "Your AI assistant for questions about Ginnie Mae Guaranteed Home Equity Conversion Mortgage-Backed Securities (HECM MBS)."
     favicon: str = "/favicon.ico"
     show_share_button: bool = True
     show_chat_history_button: bool = False
@@ -119,7 +119,7 @@ class _AzureOpenAISettings(BaseSettings):
     logit_bias: Optional[dict] = None
     presence_penalty: Optional[confloat(ge=-2.0, le=2.0)] = 0.0
     frequency_penalty: Optional[confloat(ge=-2.0, le=2.0)] = 0.0
-    system_message: str = "You are an AI assistant that helps people find information."
+    system_message: str = "You are an AI assistant specialized in analyzing and answering questions about the Ginnie Mae Guaranteed Home Equity Conversion Mortgage-Backed Securities (HECM MBS)."
     preview_api_version: str = MINIMUM_SUPPORTED_AZURE_OPENAI_PREVIEW_API_VERSION
     embedding_endpoint: Optional[str] = None
     embedding_key: Optional[str] = None
@@ -210,7 +210,7 @@ class _SearchCommonSettings(BaseSettings):
     include_contexts: Optional[List[str]] = ["citations", "intent"]
     vectorization_dimensions: Optional[int] = None
     role_information: str = Field(
-        default="You are an AI assistant that helps people find information.",
+        default="You are an AI assistant specialized in analyzing and answering questions about the Ginnie Mae Guaranteed Home Equity Conversion Mortgage-Backed Securities (HECM MBS).",
         validation_alias="AZURE_OPENAI_SYSTEM_MESSAGE"
     )
 

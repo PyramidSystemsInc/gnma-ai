@@ -88,7 +88,7 @@
   display: flex;
   padding: 20px;
   /* Using a lighter blue that meets 4.5:1 contrast ratio with dark text */
-  background: #D5E8FF; /* Light blue with sufficient contrast */
+  background: #d5e8ff; /* Light blue with sufficient contrast */
   color: #242424; /* Dark text for 508 compliance */
   border-radius: 8px;
   box-shadow:
@@ -114,8 +114,8 @@
 .chatMessageError {
   padding: 20px;
   border-radius: 8px;
-  background-color: #FFE6E6; /* Light red background with proper contrast */
-  border-left: 4px solid #A71930; /* Darker red for better contrast */
+  background-color: #ffe6e6; /* Light red background with proper contrast */
+  border-left: 4px solid #a71930; /* Darker red for better contrast */
   box-shadow:
     0px 2px 4px rgba(0, 0, 0, 0.14),
     0px 0px 2px rgba(0, 0, 0, 0.12);

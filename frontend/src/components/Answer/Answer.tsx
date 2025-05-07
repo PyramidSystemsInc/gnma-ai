@@ -226,20 +226,33 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
     )
   }
 
+  interface CodeProps {
+    node?: any // The AST node
+    inline?: boolean
+    className?: string
+    children?: React.ReactNode
+    [key: string]: any // Allow other props
+  }
+
   const components = {
-    code({ node, ...props }: { node: any; [key: string]: any }) {
-      let language
-      if (props.className) {
-        const match = props.className.match(/language-(\w+)/)
-        language = match ? match[1] : undefined
-      }
-      const codeString = node.children[0].value ?? ''
-      return (
+    code({ node, inline, className, children, ...props }: CodeProps) {
+      const match = /language-(\w+)/.exec(className || '')
+      const language = match && match[1] ? match[1] : ''
+      const codeString = String(children).replace(/\n$/, '')
+
+      return !inline ? (
         <SyntaxHighlighter style={nord} language={language} PreTag="div" {...props}>
           {codeString}
         </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
       )
-    }
+    },
+    a: ({ node, ...props }: { node?: any; [key: string]: any }) => (
+      <a {...props} target="_blank" rel="noopener noreferrer" />
+    )
   }
   return (
     <>
@@ -248,20 +261,14 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
           <Stack horizontal grow>
             <Stack.Item grow>
               {parsedAnswer && (
-                <ReactMarkdown
-                  linkTarget="_blank"
-                  remarkPlugins={[remarkGfm, supersub]}
-                  children={
-                    SANITIZE_ANSWER
-                      ? DOMPurify.sanitize(parsedAnswer?.markdownFormatText, {
-                          ALLOWED_TAGS: XSSAllowTags,
-                          ALLOWED_ATTR: XSSAllowAttributes
-                        })
-                      : parsedAnswer?.markdownFormatText
-                  }
-                  className={styles.answerText}
-                  components={components}
-                />
+                <ReactMarkdown remarkPlugins={[remarkGfm, supersub]} components={components}>
+                  {SANITIZE_ANSWER
+                    ? DOMPurify.sanitize(parsedAnswer.markdownFormatText, {
+                        ALLOWED_TAGS: XSSAllowTags,
+                        ALLOWED_ATTR: XSSAllowAttributes
+                      })
+                    : parsedAnswer.markdownFormatText}
+                </ReactMarkdown>
               )}
             </Stack.Item>
             <Stack.Item className={styles.answerHeader}>
@@ -330,7 +337,7 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
           )}
           <Stack.Item className={styles.answerDisclaimerContainer}>
             <span className={styles.answerDisclaimer}>
-              Disclaimer: AIR-hr.ai uses Generative AI. Check for mistakes.
+              Disclaimer: gnma-ai.ai uses Generative AI. Check for mistakes.
             </span>
           </Stack.Item>
           {!!answer.exec_results?.length && (
