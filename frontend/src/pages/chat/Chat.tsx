@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRef, useState, useEffect, useContext, useLayoutEffect } from 'react'
 import { CommandBarButton, IconButton, Dialog, DialogType, Stack } from '@fluentui/react'
 import { SquareRegular, ShieldLockRegular, ErrorCircleRegular } from '@fluentui/react-icons'
@@ -820,7 +821,7 @@ const Chat = () => {
             ) : (
               <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? '40px' : '0px' }} role="log">
                 {messages.map((answer, index) => (
-                  <>
+                  <React.Fragment key={answer.id || index}>
                     {answer.role === 'user' ? (
                       <div className={styles.chatMessageUser} tabIndex={0}>
                         <div className={styles.chatMessageUserMessage}>
@@ -866,7 +867,7 @@ const Chat = () => {
                         </span>
                       </div>
                     ) : null}
-                  </>
+                  </React.Fragment>
                 ))}
                 {showLoadingMessage && (
                   <>

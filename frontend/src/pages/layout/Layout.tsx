@@ -241,24 +241,15 @@ const Layout = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}>
           <header className={styles.header} role={'banner'}>
-            <Stack horizontal verticalAlign="center" horizontalAlign="space-between">
+            <div className={styles.headerContainer}>
               <Stack horizontal verticalAlign="center">
-                <img src={logo} className={styles.headerIcon} aria-hidden="true" alt="" />
-                <Link to="/" className={styles.headerTitleContainer}>
-                  <h1 className={styles.headerTitle}>{ui?.title}</h1>
-                </Link>
+                <img src={logo} className={styles.headerIcon} aria-hidden="true" alt="App Logo" />
               </Stack>
-              <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
-                {appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured &&
-                  ui?.show_chat_history_button !== false && (
-                    <HistoryButton
-                      onClick={handleHistoryClick}
-                      text={appStateContext?.state?.isChatHistoryOpen ? hideHistoryLabel : showHistoryLabel}
-                    />
-                  )}
-                {ui?.show_share_button && <ShareButton onClick={handleShareClick} text={shareLabel} />}
-              </Stack>
-            </Stack>
+              <nav className={styles.headerNavLinks}>
+                <Link to="/">Chat</Link>
+                <Link to="/about">About</Link>
+              </nav>
+            </div>
           </header>
           <Outlet />
           <Dialog
