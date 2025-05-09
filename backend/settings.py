@@ -42,8 +42,8 @@ class _UiSettings(BaseSettings):
     )
 
     title: str = "Ginnie Mae HECM MBS Assistant"
-    logo: Optional[str] = "https://www.ncsha.org/wp-content/uploads/2018/05/Ginnie_Mae_Logo.jpg"
-    chat_logo: Optional[str] = "https://www.ncsha.org/wp-content/uploads/2018/05/Ginnie_Mae_Logo.jpg"
+    logo: Optional[str] = "/gnma-logo.jpg"
+    chat_logo: Optional[str] = "/gnma-logo.jpg"
     chat_title: str = "Ginnie Mae HECM MBS Chatbot"
     chat_description: str = "Your AI assistant for questions about Ginnie Mae Guaranteed Home Equity Conversion Mortgage-Backed Securities (HECM MBS)."
     favicon: str = "/favicon.ico"

@@ -192,34 +192,6 @@ const Layout = () => {
               </button>
             </div>
 
-            {/* <div className={styles.divider} />
-
-            <h2 className={styles.collaborationTitle}>This application is a collaboration between</h2>
-
-            <div className={styles.partnerLogos}>
-              <a
-                href="https://pyramidsystems.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.partnerLink}>
-                <img
-                  src="https://yrci-public-ercecudsgcgbfxdt.z01.azurefd.net/assets/psi-logo.png"
-                  alt="Pyramid Systems"
-                  className={styles.partnerLogo}
-                />
-              </a>
-
-              <div className={styles.logoSeparator} />
-
-              <a href="https://yrci.com" target="_blank" rel="noopener noreferrer" className={styles.partnerLink}>
-                <img
-                  src="https://yrci-public-ercecudsgcgbfxdt.z01.azurefd.net/assets/yrci-logo.png"
-                  alt="YRCI"
-                  className={styles.partnerLogo}
-                />
-              </a>
-            </div> */}
-
             <div className={styles.divider} />
 
             <div className={styles.contactSection}>
