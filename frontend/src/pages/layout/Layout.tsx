@@ -140,7 +140,7 @@ const Layout = () => {
         <div className={styles.landingPage}>
           <div className={styles.landingContainer}>
             <img
-              src="https://www.ncsha.org/wp-content/uploads/2018/05/Ginnie_Mae_Logo.jpg"
+              src="/static/pyramid-logo.png"
               alt="Ginnie Mae HECM MBS Chatbot"
               className={styles.landingLogo}
             />

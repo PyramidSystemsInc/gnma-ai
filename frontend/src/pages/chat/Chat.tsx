@@ -116,7 +116,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
-      setLogo(ui?.chat_logo || "/static/gnma-logo.jpg")
+      setLogo(ui?.chat_logo || "/static/pyramid-fav.png")
     }
   }, [appStateContext?.state.isLoading])
 
